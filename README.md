@@ -1,32 +1,82 @@
-# React + TypeScript + Vite
+# Recruitment Pipeline Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A frontend application for managing candidates throughout a recruitment process.
 
-Currently, two official plugins are available:
+The application allows recruiters to register, log in, add candidates and organize them across different hiring stages.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Live Demo
 
-## React Compiler
+[View the live application](https://job-application-tracker-ichis1.vercel.app)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the Oxlint configuration
+- Recruiter registration and login
+- Protected routes
+- Candidate creation and validation
+- Candidate search by name, surname, position and company
+- Recruitment pipeline divided by hiring stage
+- Candidate status updates
+- Candidate detail modal
+- Candidate editing and deletion
+- Data persistence using localStorage
+- Responsive interface
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Technologies
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+- React
+- TypeScript
+- Vite
+- React Router
+- CSS
+- Local Storage
+- Vercel
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Recruitment Stages
+
+Candidates can be organized into the following stages:
+
+- New
+- Screening
+- First interview
+- Second interview
+- Rejected
+- Hired
+
+## Running the Project Locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/StefanoMarz/job-application-tracker.git
+
+Enter the project directory:
+
+cd job-application-tracker
+
+Install the dependencies:
+
+npm install
+
+Start the development server:
+
+npm run dev
+Build
+
+To create a production build:
+
+npm run build
+Data Storage
+
+This project currently uses browser localStorage.
+
+Recruiters and candidates are therefore stored only in the browser and are not shared between devices.
+
+Future Improvements
+Recruiter profile page
+Shared application sidebar
+Improved responsive navigation
+Additional candidate filters
+Backend and database integration
+Author Stefano Marzella
+
+Developed by Stefano Marzella
