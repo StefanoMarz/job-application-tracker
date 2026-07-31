@@ -78,8 +78,8 @@ function CandidatesPage() {
   const statusLabels: Record<CandidateStatus, string> = {
     new: "Da visionare",
     screening: "Screening",
-    "first-interview": "Primo colloquio",
-    "second-interview": "Secondo colloquio",
+    "first-interview": "Colloquio conoscitivo",
+    "second-interview": "Colloquio tecnico",
     rejected: "Rifiutato",
     hired: "Assunto",
   };
