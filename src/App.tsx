@@ -6,6 +6,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import CandidatesPage from "./pages/CandidatesPage";
 import NewCandidatePage from "./pages/NewCandidatePage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -35,6 +36,14 @@ function App() {
         element={
           <ProtectedRoute>
             <NewCandidatePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <ProfilePage />
           </ProtectedRoute>
         }
       />

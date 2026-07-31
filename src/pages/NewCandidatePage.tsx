@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Candidate, CandidateStatus } from "../types/Candidate";
 import type { Recruiter } from "../types/Recruiter";
 import { useNavigate } from "react-router-dom";
+import AppLayout from "../components/AppLayout";
 
 function NewCandidatePage() {
   const [firstName, setFirstName] = useState("");
@@ -84,168 +85,170 @@ function NewCandidatePage() {
   }
 
   return (
-    <div className="new-candidate-page">
-      <p className="new-candidate-intro">
-        Inserisci le informazioni del nuovo candidato.
-      </p>
+    <AppLayout>
+      <div className="new-candidate-page">
+        <p className="new-candidate-intro">
+          Inserisci le informazioni del nuovo candidato.
+        </p>
 
-      <div className="new-candidate-card">
-        <h1>Aggiungi candidato</h1>
+        <div className="new-candidate-card">
+          <h1>Aggiungi candidato</h1>
 
-        <div className="new-candidate-fields">
-          <label>
-            Nome
-            <input
-              className="new-candidate-input"
-              type="text"
-              placeholder="Inserisci il nome"
-              value={firstName}
-              onChange={(event) =>
-                setFirstName(event.target.value.toUpperCase())
-              }
-            />
-          </label>
-
-          <label>
-            Cognome
-            <input
-              className="new-candidate-input"
-              type="text"
-              placeholder="Inserisci il cognome"
-              value={lastName}
-              onChange={(event) =>
-                setLastName(event.target.value.toUpperCase())
-              }
-            />
-          </label>
-
-          <label className="phone-field">
-            Numero di telefono
-            <div className="phone-inputs">
-              <input
-                className="phone-prefix-input"
-                type="text"
-                inputMode="tel"
-                maxLength={5}
-                value={phonePrefix}
-                onChange={(event) => {
-                  let value = event.target.value.replace(/[^\d+]/g, "");
-
-                  if (value && !value.startsWith("+")) {
-                    value = `+${value}`;
-                  }
-
-                  setPhonePrefix(value);
-                }}
-                aria-label="Prefisso telefonico"
-              />
-
+          <div className="new-candidate-fields">
+            <label>
+              Nome
               <input
                 className="new-candidate-input"
-                type="tel"
-                inputMode="numeric"
-                maxLength={10}
-                placeholder="Numero di telefono"
-                value={phone}
+                type="text"
+                placeholder="Inserisci il nome"
+                value={firstName}
                 onChange={(event) =>
-                  setPhone(event.target.value.replace(/\D/g, ""))
+                  setFirstName(event.target.value.toUpperCase())
                 }
               />
-            </div>
-          </label>
+            </label>
 
-          <label>
-            Email
-            <input
-              className="new-candidate-input"
-              type="email"
-              placeholder="Inserisci l'email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </label>
+            <label>
+              Cognome
+              <input
+                className="new-candidate-input"
+                type="text"
+                placeholder="Inserisci il cognome"
+                value={lastName}
+                onChange={(event) =>
+                  setLastName(event.target.value.toUpperCase())
+                }
+              />
+            </label>
 
-          <label>
-            Ruolo attuale
-            <input
-              className="new-candidate-input"
-              type="text"
-              placeholder="Es. Frontend Developer"
-              value={currentRole}
-              onChange={(event) => setCurrentRole(event.target.value)}
-            />
-          </label>
+            <label className="phone-field">
+              Numero di telefono
+              <div className="phone-inputs">
+                <input
+                  className="phone-prefix-input"
+                  type="text"
+                  inputMode="tel"
+                  maxLength={5}
+                  value={phonePrefix}
+                  onChange={(event) => {
+                    let value = event.target.value.replace(/[^\d+]/g, "");
 
-          <label>
-            Azienda attuale
-            <input
-              className="new-candidate-input"
-              type="text"
-              placeholder="Campo facoltativo"
-              value={currentCompany}
-              onChange={(event) => setCurrentCompany(event.target.value)}
-            />
-          </label>
+                    if (value && !value.startsWith("+")) {
+                      value = `+${value}`;
+                    }
 
-          <label>
-            Posizione per cui si candida
-            <input
-              className="new-candidate-input"
-              type="text"
-              placeholder="Es. Junior React Developer"
-              value={role}
-              onChange={(event) => setRole(event.target.value)}
-            />
-          </label>
+                    setPhonePrefix(value);
+                  }}
+                  aria-label="Prefisso telefonico"
+                />
 
-          <label>
-            Stato
-            <select
-              className="new-candidate-input"
-              value={status}
-              onChange={(event) =>
-                setStatus(event.target.value as CandidateStatus)
-              }
+                <input
+                  className="new-candidate-input"
+                  type="tel"
+                  inputMode="numeric"
+                  maxLength={10}
+                  placeholder="Numero di telefono"
+                  value={phone}
+                  onChange={(event) =>
+                    setPhone(event.target.value.replace(/\D/g, ""))
+                  }
+                />
+              </div>
+            </label>
+
+            <label>
+              Email
+              <input
+                className="new-candidate-input"
+                type="email"
+                placeholder="Inserisci l'email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </label>
+
+            <label>
+              Ruolo attuale
+              <input
+                className="new-candidate-input"
+                type="text"
+                placeholder="Es. Frontend Developer"
+                value={currentRole}
+                onChange={(event) => setCurrentRole(event.target.value)}
+              />
+            </label>
+
+            <label>
+              Azienda attuale
+              <input
+                className="new-candidate-input"
+                type="text"
+                placeholder="Campo facoltativo"
+                value={currentCompany}
+                onChange={(event) => setCurrentCompany(event.target.value)}
+              />
+            </label>
+
+            <label>
+              Posizione per cui si candida
+              <input
+                className="new-candidate-input"
+                type="text"
+                placeholder="Es. Junior React Developer"
+                value={role}
+                onChange={(event) => setRole(event.target.value)}
+              />
+            </label>
+
+            <label>
+              Stato
+              <select
+                className="new-candidate-input"
+                value={status}
+                onChange={(event) =>
+                  setStatus(event.target.value as CandidateStatus)
+                }
+              >
+                <option value="new">Da visionare</option>
+                <option value="screening">Screening</option>
+                <option value="first-interview">Primo colloquio</option>
+                <option value="second-interview">Secondo colloquio</option>
+                <option value="rejected">Rifiutato</option>
+                <option value="hired">Assunto</option>
+              </select>
+            </label>
+
+            <label className="new-candidate-notes">
+              Note
+              <textarea
+                className="new-candidate-input"
+                placeholder="Aggiungi eventuali note sul candidato"
+                value={notes}
+                onChange={(event) => setNotes(event.target.value)}
+              />
+            </label>
+          </div>
+
+          <div className="new-candidate-actions">
+            <button
+              type="button"
+              className="new-candidate-cancel"
+              onClick={() => navigate("/candidates")}
             >
-              <option value="new">Da visionare</option>
-              <option value="screening">Screening</option>
-              <option value="first-interview">Primo colloquio</option>
-              <option value="second-interview">Secondo colloquio</option>
-              <option value="rejected">Rifiutato</option>
-              <option value="hired">Assunto</option>
-            </select>
-          </label>
+              Annulla
+            </button>
 
-          <label className="new-candidate-notes">
-            Note
-            <textarea
-              className="new-candidate-input"
-              placeholder="Aggiungi eventuali note sul candidato"
-              value={notes}
-              onChange={(event) => setNotes(event.target.value)}
-            />
-          </label>
-        </div>
-
-        <div className="new-candidate-actions">
-          <button
-            type="button"
-            className="new-candidate-cancel"
-            onClick={() => navigate("/candidates")}
-          >
-            Annulla
-          </button>
-
-          <button
-            type="button"
-            className="new-candidate-save"
-            onClick={handleSaveCandidate}
-          >
-            Salva candidato
-          </button>
+            <button
+              type="button"
+              className="new-candidate-save"
+              onClick={handleSaveCandidate}
+            >
+              Salva candidato
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }
 

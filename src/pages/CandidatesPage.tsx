@@ -3,6 +3,7 @@ import type { Candidate, CandidateStatus } from "../types/Candidate";
 import type { Recruiter } from "../types/Recruiter";
 import { useState } from "react";
 import CandidateCard from "../components/CandidateCard";
+import AppLayout from "../components/AppLayout";
 
 function CandidatesPage() {
   const storedRecruiter = localStorage.getItem("currentRecruiter");
@@ -154,7 +155,7 @@ function CandidatesPage() {
   }
 
   return (
-    <>
+    <AppLayout>
       <div className="candidates-page">
         <div className="candidates-header">
           <div className="candidates-heading">
@@ -167,12 +168,7 @@ function CandidatesPage() {
               selezione.
             </p>
           </div>
-
           <div className="candidates-header-actions">
-            <Link to="/dashboard" className="back-dashboard-link">
-              Torna alla dashboard
-            </Link>
-
             <Link to="/candidates/new" className="add-candidate-link">
               Aggiungi candidato
             </Link>
@@ -210,35 +206,39 @@ function CandidatesPage() {
             <p>Prova a modificare i termini della ricerca.</p>
           </div>
         ) : (
-          <div className="pipeline">
-            {pipelineStatuses.map((pipelineStatus) => (
-              <section className="pipeline-column" key={pipelineStatus}>
-                <h2>{statusLabels[pipelineStatus]}</h2>
+          <div className="pipeline-scroll">
+            <div className="pipeline">
+              {pipelineStatuses.map((pipelineStatus) => (
+                <section className="pipeline-column" key={pipelineStatus}>
+                  <h2>{statusLabels[pipelineStatus]}</h2>
 
-                <p>
-                  {
-                    filteredCandidates.filter(
-                      (candidate) => candidate.status === pipelineStatus
-                    ).length
-                  }{" "}
-                  candidati
-                </p>
+                  <p>
+                    {
+                      filteredCandidates.filter(
+                        (candidate) => candidate.status === pipelineStatus
+                      ).length
+                    }{" "}
+                    candidati
+                  </p>
 
-                <ul>
-                  {filteredCandidates
-                    .filter((candidate) => candidate.status === pipelineStatus)
-                    .map((candidate) => (
-                      <CandidateCard
-                        key={candidate.id}
-                        candidate={candidate}
-                        onStatusChange={handleStatusChange}
-                        onDelete={handleDeleteCandidate}
-                        onOpen={setSelectedCandidate}
-                      />
-                    ))}
-                </ul>
-              </section>
-            ))}
+                  <ul>
+                    {filteredCandidates
+                      .filter(
+                        (candidate) => candidate.status === pipelineStatus
+                      )
+                      .map((candidate) => (
+                        <CandidateCard
+                          key={candidate.id}
+                          candidate={candidate}
+                          onStatusChange={handleStatusChange}
+                          onDelete={handleDeleteCandidate}
+                          onOpen={setSelectedCandidate}
+                        />
+                      ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
           </div>
         )}
         {selectedCandidate && (
@@ -495,7 +495,7 @@ function CandidatesPage() {
           </div>
         )}
       </div>
-    </>
+    </AppLayout>
   );
 }
 
