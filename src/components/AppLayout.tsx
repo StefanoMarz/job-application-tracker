@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import type { Recruiter } from "../types/Recruiter";
 
@@ -7,6 +7,7 @@ type AppLayoutProps = {
 };
 
 function AppLayout({ children }: AppLayoutProps) {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const navigate = useNavigate();
 
   const currentRecruiter: Recruiter | null = JSON.parse(
@@ -18,10 +19,32 @@ function AppLayout({ children }: AppLayoutProps) {
     navigate("/login");
   }
 
+  function handleSidebarToggle() {
+    setIsSidebarCollapsed((currentValue) => !currentValue);
+  }
+
   return (
-    <div className="app-layout">
+    <div
+      className={`app-layout ${isSidebarCollapsed ? "sidebar-collapsed" : ""}`}
+    >
       <aside className="sidebar">
-        <div>
+        <button
+          type="button"
+          className="sidebar-toggle"
+          onClick={handleSidebarToggle}
+          aria-label={
+            isSidebarCollapsed
+              ? "Apri il menu laterale"
+              : "Chiudi il menu laterale"
+          }
+          aria-expanded={!isSidebarCollapsed}
+        >
+          <span className="sidebar-toggle-icon" aria-hidden="true">
+            {isSidebarCollapsed ? "❮" : "❯"}
+          </span>
+        </button>
+
+        <div className="sidebar-content">
           <h2 className="sidebar-title">Recruitment Manager</h2>
 
           <div className="sidebar-user">
@@ -29,9 +52,11 @@ function AppLayout({ children }: AppLayoutProps) {
               <span className="sidebar-status-dot"></span>
               Profilo autenticato
             </span>
+
             <strong>
               {currentRecruiter?.firstName} {currentRecruiter?.lastName}
             </strong>
+
             <span>{currentRecruiter?.email}</span>
           </div>
 
@@ -53,6 +78,7 @@ function AppLayout({ children }: AppLayoutProps) {
             >
               Candidati
             </NavLink>
+
             <NavLink
               to="/profile"
               className={({ isActive }) =>
